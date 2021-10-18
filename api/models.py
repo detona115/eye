@@ -2,16 +2,13 @@ from django.db import models
 import uuid
 # Create your models here.
 class Event(models.Model):
-    session_id = models.UUIDField(default=uuid.uuid4, editable=False, unique=True)
+    session_id = models.UUIDField(default=uuid.uuid4, editable=True, unique=True)
     category = models.CharField(max_length=100)
     name = models.CharField(max_length=100)
     timestamp = models.DateTimeField()
 
     def __str__(self):
-        return self.name
-
-    class Meta:
-        ordering = ['name']
+        return f"{self.name} - {self.category}"
 
 
 class Data(models.Model):
@@ -22,7 +19,7 @@ class Data(models.Model):
     )
     host = models.CharField(max_length=250)
     path = models.CharField(max_length=100)
-    element = models.CharField(max_length=100, null=True, blank=True)
+    element = models.CharField(max_length=100, blank=True)
 
     def __str__(self):
         return f"{self.host} - {self.path}"
@@ -34,6 +31,7 @@ class Form(models.Model):
         Data,
         on_delete=models.CASCADE,
         related_name='form',
+        blank=True
     )
 
     def __str__(self):

@@ -1,0 +1,29 @@
+version: "3.8"
+
+services:
+  eye_web:
+    build: .
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - .:/code
+    ports:
+      - "8000:8000"
+    environment:
+      - DEBUG=1
+      - DJANGO_ALLOWED_HOSTS=localhost 127.0.0.1 [::1]
+    depends_on:
+      - eye_db
+
+  eye_db:
+    image: postgres:12
+    environment:
+      - POSTGRES_DB= postgres
+      - POSTGRES_USER= postgres
+      - POSTGRES_PASSWORD= postgres
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+volumes:
+  pgdata:
+
+
