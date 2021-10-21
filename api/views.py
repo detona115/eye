@@ -7,6 +7,7 @@ from datetime import datetime
 from .models import Event, Data, Form
 from .serializers import EventSerializer, EventElementSerializer, EventFormSerializer, EventSerializerAll
 
+
 class EventAPIView(generics.ListCreateAPIView):
     queryset = Event.objects.all()
 
@@ -31,10 +32,10 @@ class EventAPIView(generics.ListCreateAPIView):
         data = self.request.data
 
         if self.request.data:
-            if "element" in data['data'][0]:
+            if data['category'] == "page interaction" and data['name'] == "cta click":
                 return EventElementSerializer
-            elif "form" in data['data'][0]:
+            elif data['category'] == "form interaction" and data['name'] == "submit":
                 return EventFormSerializer
-            else:
+            elif data['category'] == "page interaction" and data['name'] == "pageview":
                 return EventSerializer
         return EventSerializerAll
