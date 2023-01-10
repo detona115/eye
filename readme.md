@@ -17,7 +17,7 @@
    As described in the Pipfile and requirements.txt files, 
    the libraries needed to run this implementation are:
 
-    * django==3.2.8
+    * django==4.1.5
     * djangorestframework==3.12.4
     * drf-yasg==1.20.0    
     * psycopg2-binary==2.9.1
@@ -26,16 +26,16 @@
 
 1. Build the images by running
     ```
-    $ docker-compose up -d --build
+    docker-compose up -d --build
     ```
 2. Make the migrations
    The implementation comes with the app api migration done, the dev just needs to "migrate"
    ```
-   $ docker-compose exec eye_web python manage.py migrate
+   docker-compose exec eye_web python manage.py migrate
    ``` 
 3. Create a super user
    ```
-   $ docker-compose exec eye_web python manage.py createsuperuser
+   docker-compose exec eye_web python manage.py createsuperuser
    ```
 
 
@@ -51,11 +51,11 @@ Access in the api has the following prefix : http://localhost:8000/api/...
 Unusually for this implementation, I created a single dynamic 
 endpoint that handles all expected use cases.
 
-Exemplo:
+Exemple:
 
 * http://localhost:8000/api/
 
-Tipo de dados:
+Type of data:
 
 The api only authorizes the insertion of data on the endpoint http://localhost:8000/api/ following the following example:
         
@@ -114,7 +114,7 @@ NB: For all lists, the parser expect a dictionary inside it
 
 ## Author ✒️
 
-* **Andy Kiaka** - *Job Completo* - [detona115](https://github.com/detona115)
+* **Andy Kiaka** - *Job Completed* - [detona115](https://github.com/detona115)
 
 ---
 ⌨️ com ❤️ por [detona115](https://github.com/detona115) 😊
